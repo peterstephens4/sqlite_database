@@ -41,12 +41,18 @@ with con:
     cur.execute('SELECT name, state FROM cities INNER JOIN weather ON name=city where warm_month="July";')
     rows = cur.fetchall()
     
+    # List comprehension method
+    name_state_list = [city + ', ' + state for city, state in rows]
+    
+    # Data frame itteration method
+    '''
     df = pd.DataFrame(rows)
     name_state_list = []
         
     for i, row in df.iterrows():
         name_state_list.append(df[0].tolist()[i] + ', ' + df[1].tolist()[i])
-        
+    '''
+    
     print('The cities that are warmest in July are: ' + str(name_state_list).strip('[]') + '.')
  
     
